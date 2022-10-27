@@ -166,4 +166,3 @@ module AGNews
     end
   end
 end
-
