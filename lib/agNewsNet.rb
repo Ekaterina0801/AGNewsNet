@@ -158,7 +158,9 @@ module AGNews
 
     def makePredictionFromFile(path)
       labels = {1 => "World",2 => "Sports",3 => "Business",4 => "Sci/Tec"}
-      
+      f = File.open(path)
+      text = f.read
+      f.close
       puts "Theme of news: %s" % labels[prediction(@model,text)]
       labels[prediction(@model,text)]
     end
