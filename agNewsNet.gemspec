@@ -16,6 +16,10 @@ Gem::Specification.new do |spec|
                    'agNewsNet.gemspec', '.github/*.md',
                    'Gemfile', 'Rakefile']
   spec.extra_rdoc_files = ['README.md']
+  spec.add_development_dependency 'codecov', '~> 0.6.0'
+  spec.add_development_dependency 'dotenv', '~> 2.5'
+  spec.add_development_dependency 'rake', '~> 11.2.2'
+  spec.add_development_dependency 'rspec', '~> 3.5.0'
   spec.add_dependency 'ruby-vips', '~> 2.1.4'
   spec.add_dependency 'tensorflow', '~> 0.2.0'
   spec.add_dependency 'torch-rb', '~> 0.11.2'
