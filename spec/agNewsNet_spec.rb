@@ -17,7 +17,7 @@ text2 = "'Teenage T. rex's monster growth,Tyrannosaurus rex achieved its massive
 text3 = "Fears for T N pension after talks,Unions representing workers at Turner   Newall say they are 'disappointed' after talks with stricken parent firm Federal Mogul." #3
 text4 = "West Mulls Boundries for African Fighting (AP),'AP - As the month-end deadline nears for Sudan to disarm the mostly Arab pro-government militias in Darfur, the United Nations and Western powers are in a dilemma over how far to go to stop the killing in an African country."#1
 
-network = AGNews::Net.new(batch_size:5)
+network = AGNews::Net.new
 network.createModel
 
 RSpec.describe AGNews do

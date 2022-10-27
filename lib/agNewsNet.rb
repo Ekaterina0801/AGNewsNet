@@ -12,6 +12,7 @@ module AGNews
       @batch_size = batch_size
       @count_epochs  = count_epochs
       device = Torch.device(Torch::CUDA.available? ? "cuda" : "cpu")
+      puts "Loading dataset"
       @train_dataset,@test_dataset = TorchText::Datasets::AG_NEWS.load(root: ".data", ngrams: 2)
       #@model = TextClassifier.new(@train_dataset.vocab.length, 32, 4).to(device)
       #@model.load_state_dict(Torch.load("agnewsNet.pth"))
@@ -50,16 +51,11 @@ module AGNews
 
 
       #----------------------Preparing dataset-------------------------
-      puts "Preparing dataset"
-      #train_dataset, test_dataset = TorchText::Datasets::AG_NEWS.load(root: ".data", ngrams: 2)
       train_len = (@train_dataset.length * 0.8).to_i
       split_train, split_test = Torch::Utils::Data.random_split(@train_dataset, [train_len, @train_dataset.length - train_len])
       device = Torch.device(Torch::CUDA.available? ? "cuda" : "cpu")
       #----------------------------------------------------------------
 
-      #-----------------------Definition network-----------------------
-
-      #----------------------------------------------------------------
       vocab_size = @train_dataset.vocab.length
       count_of_classes = @train_dataset.labels.length
       model = TextClassifier.new(vocab_size, embedding_dimension, count_of_classes).to(device)
@@ -122,7 +118,7 @@ module AGNews
         [loss / split_test.length, accuracy / split_test.length.to_f]
       }
       #--------------------------------------------------------------
-
+      puts "Training model"
       (1..count_epochs).each {
         |epoch|
         start_time = Time.now
@@ -133,7 +129,7 @@ module AGNews
         puts "Epoch: %d | time:  %d seconds" % [epoch, time]
         puts "\tTrain Loss: %.4f \t|\tTrain Accuracy: %.1f%% " % [train_loss, train_accuracy * 100]
         puts "\tTest  Loss: %.4f \t|\tTest  Accuracy: %.1f%% " % [test_loss, test_accuracy * 100]
-        puts("-------------------------------------------------")
+        puts("-----------------------------------------------------------------")
       }
 
       puts "Checking the results of test dataset"
