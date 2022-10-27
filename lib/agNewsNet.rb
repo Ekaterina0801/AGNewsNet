@@ -1,8 +1,8 @@
-require ''
+require 'torch-rb'
+require 'torchtext'
 module AGNews
   module Net
     class << self
-      ass Classifier
       attr_writer :batch_size, :count_epochs
       attr_reader :train_dataset, :test_dataset
       attr_writer :model
@@ -144,15 +144,22 @@ module AGNews
 
       end
     end
-    def make_prediction(model, text)
+
+    def prediction(model, text)
       Torch.no_grad do
         text = Torch.tensor(TorchText::Data::Utils.ngrams_iterator(TorchText::Data::Utils.tokenizer("basic_english").call(text), 2).map { |token| @train_dataset.vocab[token] })
         model.call(text, Torch.tensor([0])).argmax(1).item + 1
       end
     end
-    def prediction(text)
+    def makePredictionFromString(text)
       labels = {1 => "World",2 => "Sports",3 => "Business",4 => "Sci/Tec"}
-      puts "Theme of news: %s" % labels[make_prediction(@model,text)]
+      puts "Theme of news: %s" % labels[prediction(@model,text)]
+    end
+
+    def makePredictionFromFile(path)
+      labels = {1 => "World",2 => "Sports",3 => "Business",4 => "Sci/Tec"}
+      #TODO make getting text from file
+      puts "Theme of news: %s" % labels[prediction(@model,text)]
     end
   end
 end
