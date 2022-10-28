@@ -7,7 +7,7 @@ module AGNews
     attr_reader :train_dataset, :test_dataset
     attr_writer :model
 
-    def initialize(batch_size=64, count_epochs=5)
+    def initialize(batch_size=32, count_epochs=8)
       super()
       @batch_size = batch_size
       @count_epochs  = count_epochs

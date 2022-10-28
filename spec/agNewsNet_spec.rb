@@ -16,6 +16,10 @@ text1 = "MEMPHIS, Tenn. – Four days ago, Jon Rahm was \t
 text2 = "'Teenage T. rex's monster growth,Tyrannosaurus rex achieved its massive size due to an enormous growth spurt during its adolescent years."#4
 text3 = "Fears for T N pension after talks,Unions representing workers at Turner   Newall say they are 'disappointed' after talks with stricken parent firm Federal Mogul." #3
 text4 = "West Mulls Boundries for African Fighting (AP),'AP - As the month-end deadline nears for Sudan to disarm the mostly Arab pro-government militias in Darfur, the United Nations and Western powers are in a dilemma over how far to go to stop the killing in an African country."#1
+path1 = File.expand_path("../spec/file1.txt", __dir__)
+path2 = File.expand_path("../spec/file2.txt", __dir__)
+path3 = File.expand_path("../spec/file3.txt", __dir__)
+path4 = File.expand_path("../spec/file4.txt", __dir__)
 
 network = AGNews::Net.new
 network.createModel
@@ -36,6 +40,22 @@ RSpec.describe AGNews do
 
   it "Test 4" do
     expect(network.makePredictionFromString(text4)).to eq("World")
+  end
+
+  it "Test 5" do
+    expect(network.makePredictionFromFile(path1)).to eq("Business")
+  end
+
+  it "Test 6" do
+    expect(network.makePredictionFromFile(path2)).to eq("World")
+  end
+
+  it "Test 7" do
+    expect(network.makePredictionFromFile(path3)).to eq("Sports")
+  end
+
+  it "Test 8" do
+    expect(network.makePredictionFromFile(path4)).to eq("Sci/Tec")
   end
 
 end
