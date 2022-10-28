@@ -23,7 +23,7 @@ gem install AGNewsNet
 При первом создании модели нейросеть будет сохранена в файл agnewsNet.pth
 
 Создание и обучение нейросети с заранее установленными параметрами
-(по умолчанию batch_size = 64 и count_of_epochs = 5)
+(по умолчанию batch_size = 64 и count_of_epochs = 8)
 
 ```python
 network = AGNews::Net.new
