@@ -49,7 +49,13 @@ network.makePredictionFromFile(FilePath)
 ```python
 network.makePredictionFromString(text)
 ```
+# Тестирование
 
+Для тестирования гема необходимо в терминале выполнить команду
+```python
+bundle exec rspec
+```
+ 
 # Разработка
 
 Запуск тестов осуществляется следующей командой в терминале: 
